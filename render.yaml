@@ -8,6 +8,8 @@ services:
     plan: free
     healthCheckPath: /
     envVars:
+      - key: PORT # <-- 新增的端口配置
+        value: 3000
       - key: USERNAME
         value: monsoon # 替换为您的站长账号
       - key: PASSWORD
