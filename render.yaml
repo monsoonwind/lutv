@@ -5,7 +5,7 @@ services:
     runtime: image
     image:
       url: ghcr.io/moontechlab/lunatv:latest
-    plan: free # 您可以根据需求选择付费计划
+    plan: free
     healthCheckPath: /
     envVars:
       - key: USERNAME
@@ -13,25 +13,12 @@ services:
       - key: PASSWORD
         value: kkb123 # 替换为您的站长密码
       - key: NEXT_PUBLIC_STORAGE_TYPE
-        value: kvrocks
-      - key: KVROCKS_URL
-        fromService:
-          type: pserv
-          name: moontv-kvrocks
-          property: connectionString
+        value: upstash # 存储类型改为 upstash
+      - key: UPSTASH_URL
+        value: https://noble-halibut-56987.upstash.io # 替换为您从 Upstash 复制的 URL
+      - key: UPSTASH_TOKEN
+        value: Ad6bAAIncDE0MGE5Mzg0NDJkNmE0NGVlOTI4Y2UyYzYxZmQ3YTgzMXAxNTY5ODc # 替换为您从 Upstash 复制的 TOKEN
       - key: AUTH_TOKEN
         value: f27f52d7825f5bb4b8af0363fcc244cb # 替换为您从机器人获取的授权码
-      - key: TZ # 可选：设置时区
+      - key: TZ
         value: Asia/Shanghai
-
-  # Kvrocks 数据库服务
-  - type: pserv
-    name: moontv-kvrocks
-    runtime: image
-    image:
-      url: apache/kvrocks
-    plan: free # 您可以根据需求选择付费计划
-    disk:
-      name: kvrocks-data
-      mountPath: /var/lib/kvrocks
-      sizeGB: 1
