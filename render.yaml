@@ -2,16 +2,16 @@ services:
   # MoonTV 核心服务
   - type: web
     name: moontv-core
-    env: docker
-    repo: https://github.com/MoonTechLab/LunaTV # 这是一个示例仓库，Render 会忽略它因为我们直接指定了镜像
-    dockerImage: ghcr.io/moontechlab/lunatv:latest
-    plan: free # 您可以根据需要选择付费计划
+    runtime: image
+    image:
+      url: ghcr.io/moontechlab/lunatv:latest
+    plan: free # 您可以根据需求选择付费计划
     healthCheckPath: /
     envVars:
       - key: USERNAME
         value: monsoon # 替换为您的站长账号
       - key: PASSWORD
-        value: kkb1234 # 替换为您的站长密码
+        value: kkb123 # 替换为您的站长密码
       - key: NEXT_PUBLIC_STORAGE_TYPE
         value: kvrocks
       - key: KVROCKS_URL
@@ -27,11 +27,10 @@ services:
   # Kvrocks 数据库服务
   - type: pserv
     name: moontv-kvrocks
-    env: docker
-    dockerImage: apache/kvrocks
-    plan: free # 您可以根据需要选择付费计划
-    # Render 的私有服务没有外部端口，这里只是示例
-    # 内部连接将通过 connectionString 完成
+    runtime: image
+    image:
+      url: apache/kvrocks
+    plan: free # 您可以根据需求选择付费计划
     disk:
       name: kvrocks-data
       mountPath: /var/lib/kvrocks
