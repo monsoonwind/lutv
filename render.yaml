@@ -13,7 +13,7 @@ services:
       - key: USERNAME
         value: monsoon # 替换为您的站长账号
       - key: PASSWORD
-        value: kkb123 # 替换为您的站长密码
+        value: kkb12345 # 替换为您的站长密码
       - key: NEXT_PUBLIC_STORAGE_TYPE
         value: upstash # 存储类型改为 upstash
       - key: UPSTASH_URL
